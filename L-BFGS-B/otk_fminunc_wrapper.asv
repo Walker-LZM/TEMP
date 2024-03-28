@@ -1,0 +1,11 @@
+function [obj,grad] = otk_fminunc_wrapper(mu,C,gamma)
+
+Theta = (mu+mu'-C+gamma);
+Theta = 0.5*(mu+mu'-C)/gamma+gamma;
+Theta = 0.5*max(S,0)/gamma;
+
+
+grad = sum(Theta,2)-2;
+obj = (1-gamma)*sum(Theta.^2,'all')-2*sum(mu);
+
+end
